@@ -1,3 +1,4 @@
+import 'package:antony_913/pages/grid_page.dart';
 import 'package:antony_913/pages/temp_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,13 @@ class HomePage extends StatefulWidget{
 }
 
 class _HomePageState extends State<HomePage>{
-  int selectedIndex = 0;
-  List pages = const [
-    DestaquesPage(),
-    TemporariaPage(),
-    TemporariaPage(),
-    TemporariaPage(),
-  ];
+ int selectedIndex = 0;
+ List pages = const [
+   DestaquesPage(),
+   GridPacotes(),
+   TemporariaPage(),
+   TemporariaPage(),
+ ];
 
   Widget build(BuildContext context){
     return Scaffold(
@@ -33,7 +34,7 @@ class _HomePageState extends State<HomePage>{
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.compass),
+              icon: Icon(CupertinoIcons.compass),
             label: 'Destaques',
           ),
 
