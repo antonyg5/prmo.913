@@ -40,43 +40,50 @@ class _CardPacoteTuristicoState extends State<CardPacoteTuristico> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    widget.pacoteTuristico.titulo,
-                    style: const TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold,
+                  FittedBox(
+                    fit: BoxFit.fill,
+                    child: Text(
+                      widget.pacoteTuristico.titulo,
+                      style: const TextStyle(
+                        fontSize: 21,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   SizedBox(height: 8),
                   Text(widget.pacoteTuristico.transporte),
                   const SizedBox(height: 8),
-                  Row(
+                  Wrap(
                     children: [
                       const Icon(Icons.wb_sunny_outlined),
                       const SizedBox(width: 4),
                       Text('${widget.pacoteTuristico.numDiarias} Diárias'),
                       const SizedBox(width: 8),
-                      const Icon(Icons.person_outline),
-                      const SizedBox(width: 4),
-                      Text('${widget.pacoteTuristico.numPessoas} Pessoa'),
+                      Row(
+                        children: [
+                          const Icon(Icons.person_outline),
+                          const SizedBox(width: 4),
+                          Text('${widget.pacoteTuristico.numPessoas} Pessoa'),
+                        ],
+                      ),
                     ],
                   ),
                   const SizedBox(height: 8),
                   Text('A partir de R\$ ${widget.pacoteTuristico.precoAntigo}'),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                  Wrap(
                     children: [
                       Text(
                         'R\$ ${widget.pacoteTuristico.precoAtual}',
                         style: const TextStyle(
-                          fontSize: 28,
+                          fontSize: 24,
                           color: Colors.orange,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(width: 8),
                       Text(
-                          'Taxa Grátis em até ${widget.pacoteTuristico.numParcelas}x'),
+                          'Taxa Grátis em até ${widget.pacoteTuristico.numParcelas}x'
+                      ),
                     ],
                   ),
                   SizedBox(height: 8),
@@ -100,11 +107,16 @@ class _CardPacoteTuristicoState extends State<CardPacoteTuristico> {
   buildImage() {
     return Stack(
       children: [
-        ClipRRect(
-          borderRadius: const BorderRadius.vertical(
-            top: Radius.circular(16),
-          ),
-          child: Image.network(widget.pacoteTuristico.imagem),
+        Container(
+          height: 180,
+          width: double.infinity,
+          child: ClipRRect(
+           borderRadius: const BorderRadius.vertical(
+           top: Radius.circular(16),
+         ),
+            child: Image.network(widget.pacoteTuristico.imagem,
+            fit: BoxFit.cover,),
+         ),
         ),
         Container(
           margin: const EdgeInsets.only(left: 16, top: 20),
