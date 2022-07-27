@@ -1,4 +1,5 @@
 import 'package:antony_913/pages/home_page.dart';
+import 'package:antony_913/widget/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -33,14 +34,19 @@ class _LoginPageState extends State<LoginPage> {
             TextField(
               controller: userController,
               decoration: const InputDecoration(
-                labelText: 'Usuário',
+                border: OutlineInputBorder(),
+                labelText: 'E-mail',
+                prefixIcon: Icon(Icons.person_outline, size: 20,),
               ),
             ),
+            const SizedBox(height: 32,),
             TextField(
               controller: pswdController,
               obscureText: true,
               decoration: const InputDecoration(
+                border: OutlineInputBorder(),
                 labelText: 'Senha',
+                prefixIcon: Icon(Icons.key_outlined, size: 20,),
               ),
             ),
             const SizedBox(height: 32,),
@@ -79,15 +85,12 @@ class _LoginPageState extends State<LoginPage> {
               },
           ),
       );
-      final snack = SnackBar(content:
-      const Text('Login correto'),
-        action: SnackBarAction(label: 'Ok', onPressed: (){}),);
+      final snack = Utils.customSnackBar(context, 'Login correto');
+
       ScaffoldMessenger.of(context).showSnackBar(snack);
 
     } else {
-      final snack = SnackBar(content:
-      const Text('Senha ou usuário incorretos'),
-        action: SnackBarAction(label: 'Ok', onPressed: (){}),);
+      final snack = Utils.customSnackBar(context, 'Senha ou usuário incorreto');
       ScaffoldMessenger.of(context).showSnackBar(snack);
     }
 
