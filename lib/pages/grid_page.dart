@@ -1,5 +1,5 @@
 import 'package:antony_913/widget/pacote_turistico_card1.dart';
-import '../data/bd.dart';
+import '../data/BD.dart';
 import '../domain/pacote_turistico.dart';
 import 'package:flutter/material.dart';
 
