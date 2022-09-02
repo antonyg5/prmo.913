@@ -1,4 +1,4 @@
-import 'package:antony_913/data/bd.dart';
+import 'package:antony_913/data/BD.dart';
 import 'package:antony_913/pages/pacote_promocional.dart';
 import 'package:flutter/material.dart';
 import '../domain/pacote_turistico.dart';
