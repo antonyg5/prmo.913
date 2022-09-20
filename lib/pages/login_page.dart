@@ -1,3 +1,4 @@
+import 'package:antony_913/data/db_helper.dart';
 import 'package:flutter/material.dart';
 import 'home_page.dart';
 
@@ -16,8 +17,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(0.0),
+    DBHelper().initDB();
+
+    return SafeArea(
+      // padding: const EdgeInsets.all(0.0),
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.all(16),
