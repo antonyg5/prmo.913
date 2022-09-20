@@ -1,5 +1,6 @@
 import 'package:antony_913/widget/pacote_turistico_card1.dart';
 import '../data/BD.dart';
+import '../data/pacoteDAO.dart';
 import '../domain/pacote_turistico.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,6 @@ class GridPacotes extends StatefulWidget {
 }
 
 class _GridPacotesState extends State<GridPacotes> {
-  List<PacoteTuristico> listaPacotes = BD.lista;
 
 
   @override
@@ -19,7 +19,7 @@ class _GridPacotesState extends State<GridPacotes> {
     return  Padding(
       padding: const EdgeInsets.all(16.0),
       child: FutureBuilder<List<PacoteTuristico>>(
-        future: BD.getValues(),
+        future: PacoteDao().listarPacotes(),
           builder: (context, snapshot){
           if (snapshot.hasData){
             List<PacoteTuristico> lista = snapshot.data ?? [];
@@ -29,9 +29,9 @@ class _GridPacotesState extends State<GridPacotes> {
             (crossAxisCount: 2,
             childAspectRatio: 0.36,
             ),
-            itemCount: listaPacotes.length,
+            itemCount: lista.length,
               itemBuilder: (context, index){
-              return CardPacoteTuristico(pacoteTuristico: listaPacotes[index],);
+              return CardPacoteTuristico(pacoteTuristico: lista[index],);
               },
             ),
             );
