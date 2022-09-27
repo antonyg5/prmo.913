@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -6,7 +8,11 @@ class DBHelper{
   initDB() async {
     String databasePath = await getDatabasesPath();
     String path = join(databasePath, "pacote.db");
-    Database database = openDatabase(path, version: 1, onCreate: onCreate) as Database;
+    var database = await openDatabase(path,
+        version: 1,
+        onCreate: onCreate,
+        onUpgrade: onUpgrade
+    );
 
     print(path);
     return database;
@@ -24,5 +30,15 @@ class DBHelper{
     sql =
     "INSERT INTO package (id, head, url_image, city, title, transport, validity, old_price, current_price, nights, discount, persons, free_cancellation) VALUES (2, 'Pacote Cancún', 'https://blogmaladeviagem.com.br/wp-content/uploads/2016/11/Blog-Mala-de-Viagem-cancun.jpg', 'CANCÚN, MEX', 'Pacote Cancún 2021', 'Aéreo + Transfer Grátis', '01 Nov 2021 a 31 Dez 2021', '6.500', '3.854', 5, 30, 1, 1);";
     await db.execute(sql);
+  }
+
+  Future<FutureOr<void>> onUpgrade(Database db, int oldVersion, int newVersion) async{
+    if(oldVersion == 1 && newVersion == 2){
+      String sql = "CREATE TABLE user (username varchar(100) PRIMARY KEY, password varchar(100))";
+      await db.execute(sql);
+
+      sql = "INSERT INTO user (username, password) VALUES ('joao@gmail.com', '123456')";
+      await db.execute(sql);
+    }
   }
 }
