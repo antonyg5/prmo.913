@@ -13,6 +13,21 @@ class PacoteTuristico{
   late final double precoAtual;
   late final double precoAntigo;
 
+  PacoteTuristico({
+    required this.validade,
+    required this.cidade,
+    required this.imagem,
+    this.nome = '',
+    required this.titulo,
+    required this.numDiarias,
+    required this.numPessoas,
+    required this.numParcelas,
+    required this.transporte,
+    required this.desconto,
+    required this.precoAtual,
+    required this.precoAntigo,
+  });
+
   PacoteTuristico.fromJson(Map<String, dynamic> json) {
     nome = json['head'];
     imagem = json['url_image'];
