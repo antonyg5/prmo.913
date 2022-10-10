@@ -9,7 +9,7 @@ class DBHelper{
     String databasePath = await getDatabasesPath();
     String path = join(databasePath, "pacote.db");
     var database = await openDatabase(path,
-        version: 1,
+        version: 2,
         onCreate: onCreate,
         onUpgrade: onUpgrade
     );
