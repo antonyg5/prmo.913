@@ -1,5 +1,8 @@
 import 'package:antony_913/data/db_helper.dart';
+import 'package:antony_913/data/shared_preferences.dart';
+import 'package:antony_913/pages/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../data/user_dao.dart';
 import 'home_page.dart';
 
@@ -82,6 +85,21 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 12),
+                ElevatedButton(
+                  onPressed: onPressedRegister,
+                  style: ElevatedButton.styleFrom(primary: Colors.white),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 12.0),
+                    child: Text(
+                      'Registrar Usuário',
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Color(0xFFE81F7C),
+                      ),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -98,6 +116,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
       if (resulted) {
+        SharedPrefsHelper().login();
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -119,6 +138,17 @@ class _LoginPageState extends State<LoginPage> {
       behavior: SnackBarBehavior.floating,
         content: Text(msg));
     ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  }
+
+  void onPressedRegister() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return const RegisterUser();
+        },
+      ),
+    );
   }
 }
 
