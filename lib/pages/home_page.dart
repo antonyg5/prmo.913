@@ -4,6 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:antony_913/pages/destaques_page.dart';
 
+import '../data/shared_preferences.dart';
+import 'login_page.dart';
+
 class HomePage extends StatefulWidget{
   const HomePage({Key? key}) : super(key: key);
   @override
@@ -21,6 +24,30 @@ class _HomePageState extends State<HomePage>{
 
   Widget build(BuildContext context){
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: false,
+        title: const Text('Pesquisar'),
+        backgroundColor: const Color(0xFF10397B),
+        actions: [
+          IconButton(
+            onPressed: () {
+              SharedPrefsHelper().logout();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const LoginPage();
+                  },
+                ),
+              );
+            },
+            icon: const Icon(
+              Icons.logout_outlined,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
       body: pages[selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Color(0xFFE81F7C),
